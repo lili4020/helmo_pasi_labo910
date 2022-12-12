@@ -1,27 +1,16 @@
-name: Build Docker Image
-on: [push]
+    name: Build Container
 
-jobs:
-  build:
+    on: [push]
 
-    runs-on: ubuntu-latest
+    jobs: 
+      build-container: 
+        runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build -t helmo_pasi_labo910 .
-    - name: Install Python dependencies 
-      run: pip install -r requirements.txt 
-    - name: Scan the image using Azure Container Scanning 
-      uses: azure/container-scan@v1 
-      with: 
-        image-name : helmo_pasi_labo910   # Replace with your image name  
+        steps: 
+          - uses: actions/checkout@v2
 
-    - name : Publish the image to Azure Container Registry  # Login to ACR  
-      uses : azure/docker-login@v1   # Login to ACR  
-      with :   # Replace <acrName> and <registry> with your ACR details  
-        loginServer : labo910.azurecr.io   # Replace <acrName> with your ACR Name  
-        username : $(acrLoginServerUsername)   # Get the username from ACR's service connection  
-        password : $(acrLoginServerPassword)   # Get the password from ACR's service connection    
+          - name: Build Container Image 
+            run: docker build --tag helmo_pasi_labo910 .
 
-    - name : Push the image to Azure Container Registry  # Push the built image to ACR     run : |    # Use a multi-line script block for multiple commands in one step     docker tag helmo_pasi_labo910 labo910.azurecr.io/helmo_pasi_labo910     docker push labo910.azurecr.io/helmo_pasi_labo910      # Replace <acrName> with your ACR Name
+          - name: Push Container Image 
+            run: docker push helmo_pasi_labo910
