@@ -18,15 +18,3 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
 
-    - name: Build Container Image 
-      run: docker build --tag helmo_pasi_labo910 .
-    
-    - name: Scan image
-      uses: Azure/container-scan@v0
-      with:
-        image-name: ${{ secrets.ACR_LOGIN_SERVER }}/helmo_pasi_labo910:${{ github.run_number }}
-        severity-threshold: CRITICAL
-        run-quality-checks: true 
-        
-    - name: Push image
-      run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/helmo_pasi_labo910:${{ github.run_number }}
