@@ -11,4 +11,8 @@
         - name: Build the Docker image
           run: docker build -t helmo_pasi_labo910 .
         - name: Install Python dependencies 
-          run: pip install -r requirements.txt
+          run: pip install -r requirements.txt 
+        - name: Scan the image using Azure Container Scanning 
+          uses: azure/container-scan@v1 
+          with: 
+            image-name : helmo_pasi_labo910   # Replace with your image name  
