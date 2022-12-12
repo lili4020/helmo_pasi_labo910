@@ -1,0 +1,14 @@
+    name: Build Docker Image
+    on: [push]
+
+    jobs:
+      build:
+
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Build the Docker image
+          run: docker build -t helmo_pasi_labo910 .
+        - name: Install Python dependencies 
+          run: pip install -r requirements.txt
