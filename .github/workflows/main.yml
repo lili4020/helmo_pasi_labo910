@@ -29,5 +29,4 @@ jobs:
         run-quality-checks: true 
         
     - name: Push image
-      run: |
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/helmo_pasi_labo910:${{ github.run_number }}
+      run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/helmo_pasi_labo910:${{ github.run_number }}
