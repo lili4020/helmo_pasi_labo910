@@ -10,8 +10,8 @@ general:
     - CVE-2021-29921
     - CVE-2021-46848
     - CVE-2022-3970
-  bestPracticeViolations:
     - CVE-2022-3643
+  bestPracticeViolations:
     - CIS-DI-0001
     - CIS-DI-0005
     - CIS-DI-0006
